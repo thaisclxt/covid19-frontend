@@ -1,4 +1,4 @@
-import { AppShell, Header, Text } from "@mantine/core";
+import { AppShell, Header, Text, Button } from "@mantine/core";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -17,8 +17,12 @@ const Home = () => {
 		>
 			{
 				<nav>
-					<Link to="/schedule">Agendar vacina</Link> |{" "}
-					<Link to="/patients">Visualizar agendamentos</Link>
+					<Button radius="lg" mr={10} component={Link} to="/schedule">
+						Agendar vacina
+					</Button>
+					<Button radius="lg" ml={10} component={Link} to="/patients">
+						Visualizar agendamentos
+					</Button>
 				</nav>
 			}
 		</AppShell>
