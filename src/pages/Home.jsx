@@ -1,31 +1,46 @@
-import { AppShell, Header, Text, Button } from "@mantine/core";
+import {
+	MantineProvider,
+	AppShell,
+	Header,
+	Text,
+	Button,
+	Space,
+	Center,
+} from "@mantine/core";
 import { Link } from "react-router-dom";
+
+import myTheme from "../theme";
 
 const Home = () => {
 	return (
-		<AppShell
-			padding="md"
-			header={
-				<Header height={70} p="md">
-					<div
-						style={{ display: "flex", alignItems: "center", height: "100%" }}
-					>
-						<Text>Vacinação Covid-19</Text>
-					</div>
-				</Header>
-			}
-		>
-			{
-				<nav>
-					<Button radius="lg" mr={10} component={Link} to="/schedule">
-						Agendar vacina
-					</Button>
-					<Button radius="lg" ml={10} component={Link} to="/patients">
-						Visualizar agendamentos
-					</Button>
-				</nav>
-			}
-		</AppShell>
+		<MantineProvider theme={myTheme}>
+			<AppShell
+				padding="md"
+				header={
+					<Header height={70} p="md" style={{ backgroundColor: "#52040F" }}>
+						<div
+							style={{ display: "flex", alignItems: "center", height: "100%" }}
+						>
+							<Text size="xl" color="white">
+								Vacinação Covid-19
+							</Text>
+						</div>
+					</Header>
+				}
+			>
+				{
+					<Center>
+						<Button radius="lg" component={Link} to="/schedule">
+							Agendar vacina
+						</Button>
+						<Space w="xl" />
+						<Button radius="lg" component={Link} to="/patients">
+							Visualizar agendamentos
+						</Button>
+					</Center>
+				}
+			</AppShell>
+		</MantineProvider>
 	);
 };
 
