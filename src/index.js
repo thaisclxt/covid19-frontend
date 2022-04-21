@@ -9,10 +9,9 @@ const rootElement = document.getElementById("root");
 render(
 	<BrowserRouter>
 		<Routes>
-			<Route path="/" element={<App />}>
-				<Route path="schedule" element={<Schedule />} />
-				<Route path="patients" element={<Patients />} />
-			</Route>
+			<Route path="/" element={<App />} />
+			<Route path="schedule" element={<Schedule />} />
+			<Route path="patients" element={<Patients />} />
 		</Routes>
 	</BrowserRouter>,
 	rootElement
