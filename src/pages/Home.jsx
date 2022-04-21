@@ -6,6 +6,7 @@ import {
 	Button,
 	Space,
 	Center,
+	Image,
 } from "@mantine/core";
 import { Link } from "react-router-dom";
 
@@ -29,10 +30,12 @@ const Home = () => {
 				}
 			>
 				{
-					<Center>
+					<Center style={{ height: 450 }}>
 						<Button size="lg" component={Link} to="/schedule">
 							Agendar vacina
 						</Button>
+						<Space w="xl" />
+						<Image width={230} src="coronavirus.png" alt="coronavirus" />
 						<Space w="xl" />
 						<Button size="lg" component={Link} to="/patients">
 							Visualizar agendamentos

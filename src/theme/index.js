@@ -14,7 +14,7 @@ const myTheme = {
 	fontFamily: "Josefin Sans",
 	defaultRadius: 30,
 	spacing: {
-		xl: 40,
+		xl: 30,
 	},
 };
 
