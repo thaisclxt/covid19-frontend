@@ -2,8 +2,8 @@ import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Patients from "./routes/patients";
-import Schedule from "./routes/schedule";
+import Patients from "./pages/Patients";
+import Schedule from "./pages/Schedule";
 
 const rootElement = document.getElementById("root");
 render(
