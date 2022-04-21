@@ -18,7 +18,12 @@ const Home = () => {
 			<AppShell
 				padding="md"
 				header={
-					<Header height={70} p="md" style={{ backgroundColor: "#52040F" }}>
+					<Header
+						fixed={true}
+						height={70}
+						p="md"
+						style={{ backgroundColor: "#52040F" }}
+					>
 						<div
 							style={{ display: "flex", alignItems: "center", height: "100%" }}
 						>
