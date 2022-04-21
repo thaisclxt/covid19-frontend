@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const App = () => (
+const Home = () => (
 	<div className="App">
 		<h1>Vacinação Covid-19</h1>
 		<nav>
@@ -10,4 +10,4 @@ const App = () => (
 	</div>
 );
 
-export default App;
+export default Home;
