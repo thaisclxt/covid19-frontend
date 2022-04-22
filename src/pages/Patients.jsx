@@ -1,4 +1,11 @@
-import { Text, Table, Paper, Space, Center } from "@mantine/core";
+import {
+	Text,
+	Table,
+	Paper,
+	Space,
+	Center,
+	SegmentedControl,
+} from "@mantine/core";
 import { useEffect, useState } from "react";
 
 import dayjs from "dayjs";
@@ -35,6 +42,7 @@ const Patients = () => {
 								<th>Data de nascimento</th>
 								<th>Dia da vacina</th>
 								<th>Horário da vacina</th>
+								<th>Vacinado(a)</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -47,6 +55,18 @@ const Patients = () => {
 										{dayjs(patient.scheduleDate)
 											.tz("Greenwich")
 											.format("HH:mm")}
+									</td>
+									<td>
+										<SegmentedControl
+											style={{ backgroundColor: "#52040F" }}
+											styles={{
+												label: { color: "white" },
+											}}
+											data={[
+												{ label: "Não", value: "não" },
+												{ label: "Sim", value: "sim" },
+											]}
+										/>
 									</td>
 								</tr>
 							))}
