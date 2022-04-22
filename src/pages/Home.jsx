@@ -4,15 +4,18 @@ import {
 	Header,
 	Text,
 	Button,
-	Space,
 	Center,
 	Image,
+	SimpleGrid,
 } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import { Link } from "react-router-dom";
 
 import myTheme from "../theme";
 
 const Home = () => {
+	const matches = useMediaQuery("(min-width: 900px)");
+
 	return (
 		<MantineProvider theme={myTheme}>
 			<AppShell
@@ -35,16 +38,24 @@ const Home = () => {
 				}
 			>
 				{
-					<Center style={{ height: 450 }}>
-						<Button size="lg" component={Link} to="/schedule">
-							Agendar vacina
-						</Button>
-						<Space w="xl" />
-						<Image width={230} src="coronavirus.png" alt="coronavirus" />
-						<Space w="xl" />
-						<Button size="lg" component={Link} to="/patients">
-							Visualizar agendamentos
-						</Button>
+					<Center
+						style={{
+							position: "absolute",
+							top: 70,
+							left: 0,
+							right: 0,
+							bottom: 0,
+						}}
+					>
+						<SimpleGrid cols={matches ? 3 : 1} style={{ alignItems: "center" }}>
+							<Button size="lg" component={Link} to="/schedule">
+								Agendar vacina
+							</Button>
+							<Image width={230} src="coronavirus.png" alt="coronavirus" />
+							<Button size="lg" component={Link} to="/patients">
+								Visualizar agendamentos
+							</Button>
+						</SimpleGrid>
 					</Center>
 				}
 			</AppShell>
