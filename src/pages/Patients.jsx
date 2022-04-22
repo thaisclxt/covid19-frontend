@@ -1,14 +1,18 @@
 import { Text, Table, Paper, Space, Center } from "@mantine/core";
+import { useEffect, useState } from "react";
+
+import api from "../service/api";
 
 const Patients = () => {
-	const patients = [
-		{
-			name: "Thaís",
-			birthDate: "06/12/2000",
-			vaccineDate: "06/12/2000",
-			vaccineHour: "00:00",
-		},
-	];
+	const [patients, setPatients] = useState([]);
+
+	useEffect(() => {
+		api
+			.get("/patients")
+			.then((response) => setPatients(response.data.patients))
+			.catch((error) => console.error(error));
+	}, []);
+
 	return (
 		<main>
 			<Text size="xl" weight="bold" align="center" color="#52040F">
@@ -20,10 +24,9 @@ const Patients = () => {
 					<Table highlightOnHover>
 						<thead>
 							<tr>
-								<th>Nome do pasciente</th>
+								<th>Nome do paciente</th>
 								<th>Data de nascimento</th>
-								<th>Dia da vacina</th>
-								<th>Horário da vacina</th>
+								<th>Data da vacina</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -31,8 +34,7 @@ const Patients = () => {
 								<tr key={index}>
 									<td>{patient.name}</td>
 									<td>{patient.birthDate}</td>
-									<td>{patient.vaccineDate}</td>
-									<td>{patient.vaccineHour}</td>
+									<td>{patient.scheduleDate}</td>
 								</tr>
 							))}
 						</tbody>
