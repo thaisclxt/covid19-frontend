@@ -58,13 +58,14 @@ const Patients = () => {
 									</td>
 									<td>
 										<SegmentedControl
+											value={patient.wasVaccinated ? "Sim" : "Não"}
 											style={{ backgroundColor: "#52040F" }}
 											styles={{
 												label: { color: "white" },
 											}}
 											data={[
-												{ label: "Não", value: "não" },
-												{ label: "Sim", value: "sim" },
+												{ label: "Não", value: "Não" },
+												{ label: "Sim", value: "Sim" },
 											]}
 										/>
 									</td>
