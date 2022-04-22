@@ -1,5 +1,7 @@
 import { Text, Space, Center, Paper, TextInput } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
+import { Calendar, LetterCase, Vaccine } from "tabler-icons-react";
+
 import "dayjs/locale/pt-br";
 
 const Schedule = () => (
@@ -10,9 +12,24 @@ const Schedule = () => (
 		<Space h="md" />
 		<Center>
 			<Paper shadow="md" p="xl" style={{ width: "40%" }}>
-				<TextInput label="Nome" required mb={12} />
+				<TextInput
+					label="Nome"
+					required
+					mb={12}
+					icon={<LetterCase size={16} color="#52040F" />}
+				/>
 				<DatePicker
+					icon={<Calendar size={16} color="#52040F" />}
 					label="Data de nascimento"
+					firstDayOfWeek="sunday"
+					inputFormat="DD/MM/YYYY"
+					locale="pt-br"
+					required
+					mb={12}
+				/>
+				<DatePicker
+					icon={<Vaccine size={16} color="#52040F" />}
+					label="Data da vacina"
 					firstDayOfWeek="sunday"
 					inputFormat="DD/MM/YYYY"
 					locale="pt-br"
