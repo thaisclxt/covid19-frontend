@@ -2,7 +2,7 @@ import { Text, Table, Paper, Space, Center } from "@mantine/core";
 
 const Patients = () => (
 	<main>
-		<Text size="xl" weight="bold" align="center">
+		<Text size="xl" weight="bold" align="center" color="#52040F">
 			Agendamentos
 		</Text>
 		<Space h="md" />

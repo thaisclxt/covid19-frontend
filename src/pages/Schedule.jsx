@@ -6,7 +6,7 @@ import "dayjs/locale/pt-br";
 
 const Schedule = () => (
 	<main>
-		<Text size="xl" weight="bold" align="center">
+		<Text size="xl" weight="bold" align="center" color="#52040F">
 			Agendar Vacina
 		</Text>
 		<Space h="md" />
