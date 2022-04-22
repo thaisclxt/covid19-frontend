@@ -1,4 +1,4 @@
-import { Text, Space, Center, Paper, TextInput } from "@mantine/core";
+import { Text, Space, Center, Paper, TextInput, Button } from "@mantine/core";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import { Calendar, LetterCase, Vaccine } from "tabler-icons-react";
 
@@ -43,7 +43,9 @@ const Schedule = () => (
 					label="Horário da vacina"
 					required
 					clearable
+					mb={12}
 				/>
+				<Button>Confirmar agendamento</Button>
 			</Paper>
 		</Center>
 	</main>
