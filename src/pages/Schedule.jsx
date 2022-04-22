@@ -1,5 +1,5 @@
 import { Text, Space, Center, Paper, TextInput } from "@mantine/core";
-import { DatePicker } from "@mantine/dates";
+import { DatePicker, TimeInput } from "@mantine/dates";
 import { Calendar, LetterCase, Vaccine } from "tabler-icons-react";
 
 import "dayjs/locale/pt-br";
@@ -25,6 +25,7 @@ const Schedule = () => (
 					inputFormat="DD/MM/YYYY"
 					locale="pt-br"
 					required
+					clearable
 					mb={12}
 				/>
 				<DatePicker
@@ -34,7 +35,14 @@ const Schedule = () => (
 					inputFormat="DD/MM/YYYY"
 					locale="pt-br"
 					required
+					clearable
 					mb={12}
+				/>
+				<TimeInput
+					icon={<Vaccine size={16} color="#52040F" />}
+					label="Horário da vacina"
+					required
+					clearable
 				/>
 			</Paper>
 		</Center>
