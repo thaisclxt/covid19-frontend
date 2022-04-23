@@ -1,12 +1,22 @@
 import { Text, Space, Center, Paper, TextInput, Button } from "@mantine/core";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import { Calendar, LetterCase, Vaccine } from "tabler-icons-react";
+import { useForm } from "@mantine/form";
 
 import "dayjs/locale/pt-br";
 
 const Schedule = () => {
+	const form = useForm({
+		initialValues: {
+			name: "",
+			birthday: "",
+			scheduleDay: "",
+			scheduleHour: "",
+		},
+	});
+
 	return (
-		<main>
+		<form onSubmit={form.onSubmit((value) => console.log(value))}>
 			<Text size="xl" weight="bold" align="center" color="#52040F">
 				Agendar Vacina
 			</Text>
@@ -18,7 +28,7 @@ const Schedule = () => {
 						required
 						mb={12}
 						icon={<LetterCase size={16} color="#52040F" />}
-						value={value}
+						{...form.getInputProps("name")}
 					/>
 					<DatePicker
 						icon={<Calendar size={16} color="#52040F" />}
@@ -29,6 +39,7 @@ const Schedule = () => {
 						required
 						clearable
 						mb={12}
+						{...form.getInputProps("birthday")}
 					/>
 					<DatePicker
 						icon={<Vaccine size={16} color="#52040F" />}
@@ -39,6 +50,7 @@ const Schedule = () => {
 						required
 						clearable
 						mb={12}
+						{...form.getInputProps("scheduleDay")}
 					/>
 					<TimeInput
 						icon={<Vaccine size={16} color="#52040F" />}
@@ -46,11 +58,12 @@ const Schedule = () => {
 						required
 						clearable
 						mb={12}
+						{...form.getInputProps("scheduleHour")}
 					/>
-					<Button onclick={onSubmit}>Confirmar agendamento</Button>
+					<Button type="submit">Confirmar agendamento</Button>
 				</Paper>
 			</Center>
-		</main>
+		</form>
 	);
 };
 
