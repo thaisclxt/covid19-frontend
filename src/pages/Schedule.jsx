@@ -1,12 +1,21 @@
+import * as Yup from "yup";
 import { Text, Space, Center, Paper, TextInput, Button } from "@mantine/core";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import { Calendar, LetterCase, Vaccine } from "tabler-icons-react";
-import { useForm } from "@mantine/form";
+import { useForm, yupResolver } from "@mantine/form";
 
 import "dayjs/locale/pt-br";
 
+const schema = Yup.object().shape({
+	name: Yup.string().required("Campo obrigatório"),
+	birthday: Yup.string().required("Campo obrigatório"),
+	scheduleDay: Yup.string().required("Campo obrigatório"),
+	scheduleHour: Yup.string().required("Campo obrigatório"),
+});
+
 const Schedule = () => {
 	const form = useForm({
+		schema: yupResolver(schema),
 		initialValues: {
 			name: "",
 			birthday: "",

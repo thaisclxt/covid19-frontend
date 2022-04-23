@@ -16,7 +16,8 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
-    "tabler-icons-react": "^1.46.0"
+    "tabler-icons-react": "^1.46.0",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
