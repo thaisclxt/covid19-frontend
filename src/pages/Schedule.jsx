@@ -4,6 +4,9 @@ import { DatePicker, TimeInput } from "@mantine/dates";
 import { Calendar, LetterCase, Vaccine } from "tabler-icons-react";
 import { useForm, yupResolver } from "@mantine/form";
 
+import dayjs from "dayjs";
+import api from "../service/api";
+
 import "dayjs/locale/pt-br";
 
 const schema = Yup.object().shape({
@@ -25,7 +28,30 @@ const Schedule = () => {
 	});
 
 	return (
-		<form onSubmit={form.onSubmit((value) => console.log(value))}>
+		<form
+			onSubmit={form.onSubmit((value) => {
+				async function pushData() {
+					try {
+						const hour = dayjs(value.scheduleHour).format("HH:mm:ss");
+						const day = dayjs(value.scheduleDay).format("YYYY-MM-DD");
+
+						const scheduleDate = new Date(day + "T" + hour + ".000+00:00");
+
+						const newData = {
+							name: value.name,
+							birthDate: value.birthday,
+							scheduleDate: scheduleDate,
+						};
+
+						await api.post("/schedule", newData);
+					} catch (error) {
+						console.error(error);
+					}
+				}
+
+				pushData();
+			})}
+		>
 			<Text size="xl" weight="bold" align="center" color="#52040F">
 				Agendar Vacina
 			</Text>
