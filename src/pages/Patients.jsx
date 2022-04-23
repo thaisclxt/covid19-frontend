@@ -72,6 +72,10 @@ const Patients = () => {
 												const newData = [...isPatientVaccinated];
 												newData[index] = value === "Sim";
 												setIsPatientVaccinated(newData);
+
+												api.put(`/patients/${patient._id}`, {
+													wasVaccinated: newData[index],
+												});
 											}}
 											style={{ backgroundColor: "#52040F" }}
 											styles={{
