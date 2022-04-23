@@ -16,12 +16,21 @@ import api from "../service/api";
 
 const Patients = () => {
 	const [patients, setPatients] = useState([]);
+	const [isPatientVaccinated, setIsPatientVaccinated] = useState([]);
 
 	useEffect(() => {
-		api
-			.get("/patients")
-			.then((response) => setPatients(response.data.patients))
-			.catch((error) => console.error(error));
+		async function fetchData() {
+			try {
+				const data = await (await api.get("/patients")).data.patients;
+				setPatients(data);
+
+				setIsPatientVaccinated(data.map((patient) => patient.wasVaccinated));
+			} catch (error) {
+				console.error(error);
+			}
+		}
+
+		fetchData();
 	}, []);
 
 	dayjs.extend(utc);
@@ -58,7 +67,12 @@ const Patients = () => {
 									</td>
 									<td>
 										<SegmentedControl
-											value={patient.wasVaccinated ? "Sim" : "Não"}
+											value={isPatientVaccinated[index] ? "Sim" : "Não"}
+											onChange={(value) => {
+												const newData = [...isPatientVaccinated];
+												newData[index] = value === "Sim";
+												setIsPatientVaccinated(newData);
+											}}
 											style={{ backgroundColor: "#52040F" }}
 											styles={{
 												label: { color: "white" },
