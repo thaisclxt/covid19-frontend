@@ -8,8 +8,6 @@ import { useForm, yupResolver } from "@mantine/form";
 import dayjs from "dayjs";
 import api from "../service/api";
 
-import "dayjs/locale/pt-br";
-
 const schema = Yup.object().shape({
 	name: Yup.string().required("Campo obrigatório"),
 	birthday: Yup.string().required("Campo obrigatório"),
@@ -106,8 +104,6 @@ const Schedule = () => {
 						icon={<Calendar size={16} color="#52040F" />}
 						label="Data de nascimento"
 						firstDayOfWeek="sunday"
-						inputFormat="DD/MM/YYYY"
-						locale="pt-br"
 						required
 						clearable
 						mb={12}
@@ -117,8 +113,6 @@ const Schedule = () => {
 						icon={<Vaccine size={16} color="#52040F" />}
 						label="Data da vacina"
 						firstDayOfWeek="sunday"
-						inputFormat="DD/MM/YYYY"
-						locale="pt-br"
 						required
 						clearable
 						mb={12}

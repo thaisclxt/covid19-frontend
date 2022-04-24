@@ -46,7 +46,6 @@ const Patients = () => {
 			<Text size="xl" weight="bold" align="center" color="#52040F">
 				Agendamentos
 			</Text>
-			<Space h="md" />
 			<Center>
 				<Paper shadow="xs" p="xl" style={{ width: "80%" }}>
 					<Group position="center" grow>
@@ -54,8 +53,6 @@ const Patients = () => {
 							icon={<Calendar size={16} color="#52040F" />}
 							label="Buscar por dia"
 							firstDayOfWeek="sunday"
-							inputFormat="DD/MM/YYYY"
-							locale="pt-br"
 							clearable
 							onChange={async (value) => {
 								if (value != null) {
