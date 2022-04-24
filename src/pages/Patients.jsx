@@ -20,7 +20,8 @@ import api from "../service/api";
 const Patients = () => {
 	const [patients, setPatients] = useState([]);
 	const [isPatientVaccinated, setIsPatientVaccinated] = useState([]);
-	const [timeDisabled, setTimeDisabled] = useState([true]);
+	const [timeDisabled, setTimeDisabled] = useState(true);
+	const [day, setDay] = useState("");
 
 	useEffect(() => {
 		async function fetchData() {
@@ -51,13 +52,15 @@ const Patients = () => {
 					<Group position="center" grow>
 						<DatePicker
 							icon={<Calendar size={16} color="#52040F" />}
-							label="Buscar por data"
+							label="Buscar por dia"
 							firstDayOfWeek="sunday"
 							inputFormat="DD/MM/YYYY"
 							locale="pt-br"
 							clearable
 							onChange={async (value) => {
 								if (value != null) {
+									setDay(dayjs(value).format("YYYY-MM-DD"));
+
 									const patientsOnDay = await (
 										await api.get(
 											`/patients/onDay/${dayjs(value).format("YYYY-MM-DD")}`
@@ -78,9 +81,18 @@ const Patients = () => {
 						/>
 						<TimeInput
 							icon={<Clock size={16} color="#52040F" />}
-							label="Horário da vacina"
+							label="Buscar por hora"
 							disabled={timeDisabled}
 							clearable
+							onChange={async (value) => {
+								const patientsOnDate = await (
+									await api.get(
+										`/patients/onDate/${dayjs(value).format(`${day}THH`)}`
+									)
+								).data.scheduleOnDayAndHour;
+
+								setPatients(patientsOnDate);
+							}}
 						/>
 					</Group>
 				</Paper>
