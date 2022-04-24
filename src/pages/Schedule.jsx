@@ -1,9 +1,9 @@
 import * as Yup from "yup";
-import { Text, Space, Center, Paper, TextInput, Button } from "@mantine/core";
-import { DatePicker, TimeInput } from "@mantine/dates";
 import { Calendar, LetterCase, Vaccine, Check, X } from "tabler-icons-react";
-import { useForm, yupResolver } from "@mantine/form";
+import { Text, Space, Center, Paper, TextInput, Button } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
+import { DatePicker, TimeInput } from "@mantine/dates";
+import { useForm, yupResolver } from "@mantine/form";
 
 import dayjs from "dayjs";
 import api from "../service/api";
@@ -18,15 +18,24 @@ const schema = Yup.object().shape({
 });
 
 const Schedule = () => {
+	const lsBirthday = localStorage.getItem("Data de nascimento");
+	const lsScheduleDay = localStorage.getItem("Dia da vacina");
+	const lsScheduleHour = localStorage.getItem("Horário da vacina");
+
 	const form = useForm({
 		schema: yupResolver(schema),
 		initialValues: {
-			name: "",
-			birthday: "",
-			scheduleDay: "",
-			scheduleHour: "",
+			name: localStorage.getItem("Nome") ?? "",
+			birthday: (lsBirthday && new Date(lsBirthday)) ?? "",
+			scheduleDay: (lsScheduleDay && new Date(lsScheduleDay)) ?? "",
+			scheduleHour: (lsScheduleHour && new Date(lsScheduleHour)) ?? "",
 		},
 	});
+
+	localStorage.setItem("Nome", form.values.name);
+	localStorage.setItem("Data de nascimento", form.values.birthday);
+	localStorage.setItem("Dia da vacina", form.values.scheduleDay);
+	localStorage.setItem("Horário da vacina", form.values.scheduleHour);
 
 	return (
 		<form
