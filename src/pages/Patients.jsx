@@ -52,12 +52,21 @@ const Patients = () => {
 						locale="pt-br"
 						clearable
 						onChange={async (value) => {
-							const patientsOnDay = await (
-								await api.get(`/patients/${dayjs(value).format("YYYY-MM-DD")}`)
-							).data.scheduleOnDate;
-							console.log(patientsOnDay);
+							if (value != null) {
+								const patientsOnDay = await (
+									await api.get(
+										`/patients/${dayjs(value).format("YYYY-MM-DD")}`
+									)
+								).data.scheduleOnDate;
+								console.log(patientsOnDay);
 
-							setPatients(patientsOnDay);
+								setPatients(patientsOnDay);
+							} else {
+								const patients = await (
+									await api.get("/patients")
+								).data.patients;
+								setPatients(patients);
+							}
 						}}
 					></DatePicker>
 				</Paper>
