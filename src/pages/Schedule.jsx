@@ -1,4 +1,3 @@
-import * as Yup from "yup";
 import { Calendar, LetterCase, Vaccine, Check, X } from "tabler-icons-react";
 import { Text, Space, Center, Paper, TextInput, Button } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
@@ -7,13 +6,7 @@ import { useForm, yupResolver } from "@mantine/form";
 
 import dayjs from "dayjs";
 import api from "../service/api";
-
-const schema = Yup.object().shape({
-	name: Yup.string().required("Campo obrigatório"),
-	birthday: Yup.string().required("Campo obrigatório"),
-	scheduleDay: Yup.string().required("Campo obrigatório"),
-	scheduleHour: Yup.string().required("Campo obrigatório"),
-});
+import schema from "../service/schema";
 
 const Schedule = () => {
 	const lsBirthday = localStorage.getItem("Data de nascimento");
