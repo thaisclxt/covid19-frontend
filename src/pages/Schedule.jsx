@@ -1,8 +1,9 @@
 import * as Yup from "yup";
 import { Text, Space, Center, Paper, TextInput, Button } from "@mantine/core";
 import { DatePicker, TimeInput } from "@mantine/dates";
-import { Calendar, LetterCase, Vaccine } from "tabler-icons-react";
+import { Calendar, LetterCase, Vaccine, Check, X } from "tabler-icons-react";
 import { useForm, yupResolver } from "@mantine/form";
+import { showNotification } from "@mantine/notifications";
 
 import dayjs from "dayjs";
 import api from "../service/api";
@@ -44,8 +45,23 @@ const Schedule = () => {
 						};
 
 						await api.post("/schedule", newData);
+
+						showNotification({
+							title: "Paciente agendado com sucesso",
+							color: "teal",
+							icon: <Check size={18} />,
+							style: { backgroundColor: "#C4C4C4" },
+						});
 					} catch (error) {
 						console.error(error);
+
+						showNotification({
+							title: "Algo deu errado",
+							color: "red",
+							icon: <X size={18} />,
+							style: { backgroundColor: "#52040F" },
+							styles: { title: { color: "white" } },
+						});
 					}
 				}
 
