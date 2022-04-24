@@ -53,14 +53,26 @@ const Schedule = () => {
 							style: { backgroundColor: "#C4C4C4" },
 						});
 					} catch (error) {
-						console.error(error);
+						let errorMessage = "";
+
+						if (error.response.status === 422) {
+							errorMessage =
+								error.response.data.message ===
+								"Limit of 2 patients per hour reached"
+									? "Limite atingido de 2 pacientes por hora"
+									: "Limite atingido de 20 pacientes por dia";
+						}
 
 						showNotification({
 							title: "Algo deu errado",
+							message: errorMessage,
 							color: "red",
 							icon: <X size={18} />,
-							style: { backgroundColor: "#52040F" },
-							styles: { title: { color: "white" } },
+							style: { backgroundColor: "#C4C4C4" },
+							styles: {
+								title: { color: "black" },
+								description: { color: "black" },
+							},
 						});
 					}
 				}
