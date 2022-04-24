@@ -6,7 +6,7 @@ import {
 	Center,
 	SegmentedControl,
 } from "@mantine/core";
-import { DatePicker, TimeInput } from "@mantine/dates";
+import { DatePicker } from "@mantine/dates";
 import { useEffect, useState } from "react";
 
 import dayjs from "dayjs";
@@ -51,6 +51,14 @@ const Patients = () => {
 						inputFormat="DD/MM/YYYY"
 						locale="pt-br"
 						clearable
+						onChange={async (value) => {
+							const patientsOnDay = await (
+								await api.get(`/patients/${dayjs(value).format("YYYY-MM-DD")}`)
+							).data.scheduleOnDate;
+							console.log(patientsOnDay);
+
+							setPatients(patientsOnDay);
+						}}
 					></DatePicker>
 				</Paper>
 			</Center>
