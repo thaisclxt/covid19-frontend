@@ -47,7 +47,7 @@ const Patients = () => {
 				Agendamentos
 			</Text>
 			<Center>
-				<Paper shadow="xs" p="xl" style={{ width: "80%" }}>
+				<Paper shadow="xs" p="xl">
 					<Group position="center" grow>
 						<DatePicker
 							icon={<Calendar size={16} color="#52040F" />}
@@ -96,7 +96,7 @@ const Patients = () => {
 			</Center>
 			<Space h="md" />
 			<Center>
-				<Paper shadow="md" p="xl" style={{ width: "80%" }}>
+				<Paper shadow="md" p="xl">
 					<Table highlightOnHover fontSize="md">
 						<thead>
 							<tr>
@@ -129,10 +129,6 @@ const Patients = () => {
 												api.put(`/patients/${patient._id}`, {
 													wasVaccinated: newData[index],
 												});
-											}}
-											style={{ backgroundColor: "#52040F" }}
-											styles={{
-												label: { color: "white" },
 											}}
 											data={[
 												{ label: "Não", value: "Não" },

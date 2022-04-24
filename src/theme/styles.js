@@ -1,11 +1,18 @@
+const primaryColor = "#52040F";
+
 const styles = {
-	Header: { root: { backgroundColor: "#52040F" } },
+	Header: { root: { backgroundColor: primaryColor } },
 	SimpleGrid: { root: { alignItems: "center" } },
 	Button: {
 		filled: {
-			backgroundColor: "#52040F",
-			"&:hover": { backgroundColor: "#52040F" },
+			backgroundColor: primaryColor,
+			"&:hover": { backgroundColor: primaryColor },
 		},
+	},
+	Paper: { root: { width: "80%" } },
+	SegmentedControl: {
+		root: { backgroundColor: primaryColor },
+		label: { color: "white" },
 	},
 };
 
