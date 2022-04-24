@@ -5,8 +5,10 @@ import {
 	Space,
 	Center,
 	SegmentedControl,
+	Group,
 } from "@mantine/core";
-import { DatePicker } from "@mantine/dates";
+import { Calendar, Clock } from "tabler-icons-react";
+import { DatePicker, TimeInput } from "@mantine/dates";
 import { useEffect, useState } from "react";
 
 import dayjs from "dayjs";
@@ -18,6 +20,7 @@ import api from "../service/api";
 const Patients = () => {
 	const [patients, setPatients] = useState([]);
 	const [isPatientVaccinated, setIsPatientVaccinated] = useState([]);
+	const [timeDisabled, setTimeDisabled] = useState([true]);
 
 	useEffect(() => {
 		async function fetchData() {
@@ -45,30 +48,41 @@ const Patients = () => {
 			<Space h="md" />
 			<Center>
 				<Paper shadow="xs" p="xl" style={{ width: "80%" }}>
-					<DatePicker
-						label="Buscar por data"
-						firstDayOfWeek="sunday"
-						inputFormat="DD/MM/YYYY"
-						locale="pt-br"
-						clearable
-						onChange={async (value) => {
-							if (value != null) {
-								const patientsOnDay = await (
-									await api.get(
-										`/patients/onDay/${dayjs(value).format("YYYY-MM-DD")}`
-									)
-								).data.scheduleOnDate;
-								console.log(patientsOnDay);
+					<Group position="center" grow>
+						<DatePicker
+							icon={<Calendar size={16} color="#52040F" />}
+							label="Buscar por data"
+							firstDayOfWeek="sunday"
+							inputFormat="DD/MM/YYYY"
+							locale="pt-br"
+							clearable
+							onChange={async (value) => {
+								if (value != null) {
+									const patientsOnDay = await (
+										await api.get(
+											`/patients/onDay/${dayjs(value).format("YYYY-MM-DD")}`
+										)
+									).data.scheduleOnDate;
 
-								setPatients(patientsOnDay);
-							} else {
-								const patients = await (
-									await api.get("/patients")
-								).data.patients;
-								setPatients(patients);
-							}
-						}}
-					></DatePicker>
+									setPatients(patientsOnDay);
+									setTimeDisabled(false);
+								} else {
+									const patients = await (
+										await api.get("/patients")
+									).data.patients;
+
+									setPatients(patients);
+									setTimeDisabled(true);
+								}
+							}}
+						/>
+						<TimeInput
+							icon={<Clock size={16} color="#52040F" />}
+							label="Horário da vacina"
+							disabled={timeDisabled}
+							clearable
+						/>
+					</Group>
 				</Paper>
 			</Center>
 			<Space h="md" />
