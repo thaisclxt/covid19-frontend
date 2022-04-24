@@ -6,6 +6,7 @@ import {
 	Center,
 	SegmentedControl,
 } from "@mantine/core";
+import { DatePicker, TimeInput } from "@mantine/dates";
 import { useEffect, useState } from "react";
 
 import dayjs from "dayjs";
@@ -43,8 +44,20 @@ const Patients = () => {
 			</Text>
 			<Space h="md" />
 			<Center>
+				<Paper shadow="xs" p="xl" style={{ width: "80%" }}>
+					<DatePicker
+						label="Buscar por data"
+						firstDayOfWeek="sunday"
+						inputFormat="DD/MM/YYYY"
+						locale="pt-br"
+						clearable
+					></DatePicker>
+				</Paper>
+			</Center>
+			<Space h="md" />
+			<Center>
 				<Paper shadow="md" p="xl" style={{ width: "80%" }}>
-					<Table highlightOnHover>
+					<Table highlightOnHover fontSize="md">
 						<thead>
 							<tr>
 								<th>Nome do paciente</th>
