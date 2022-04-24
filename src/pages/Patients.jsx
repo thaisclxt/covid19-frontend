@@ -5,7 +5,10 @@ import {
 	Space,
 	Center,
 	SegmentedControl,
+	Group,
 } from "@mantine/core";
+import { Calendar, Clock } from "tabler-icons-react";
+import { DatePicker, TimeInput } from "@mantine/dates";
 import { useEffect, useState } from "react";
 
 import dayjs from "dayjs";
@@ -17,6 +20,8 @@ import api from "../service/api";
 const Patients = () => {
 	const [patients, setPatients] = useState([]);
 	const [isPatientVaccinated, setIsPatientVaccinated] = useState([]);
+	const [timeDisabled, setTimeDisabled] = useState(true);
+	const [day, setDay] = useState("");
 
 	useEffect(() => {
 		async function fetchData() {
@@ -43,8 +48,59 @@ const Patients = () => {
 			</Text>
 			<Space h="md" />
 			<Center>
+				<Paper shadow="xs" p="xl" style={{ width: "80%" }}>
+					<Group position="center" grow>
+						<DatePicker
+							icon={<Calendar size={16} color="#52040F" />}
+							label="Buscar por dia"
+							firstDayOfWeek="sunday"
+							inputFormat="DD/MM/YYYY"
+							locale="pt-br"
+							clearable
+							onChange={async (value) => {
+								if (value != null) {
+									setDay(dayjs(value).format("YYYY-MM-DD"));
+
+									const patientsOnDay = await (
+										await api.get(
+											`/patients/onDay/${dayjs(value).format("YYYY-MM-DD")}`
+										)
+									).data.scheduleOnDate;
+
+									setPatients(patientsOnDay);
+									setTimeDisabled(false);
+								} else {
+									const patients = await (
+										await api.get("/patients")
+									).data.patients;
+
+									setPatients(patients);
+									setTimeDisabled(true);
+								}
+							}}
+						/>
+						<TimeInput
+							icon={<Clock size={16} color="#52040F" />}
+							label="Buscar por hora"
+							disabled={timeDisabled}
+							clearable
+							onChange={async (value) => {
+								const patientsOnDate = await (
+									await api.get(
+										`/patients/onDate/${dayjs(value).format(`${day}THH`)}`
+									)
+								).data.scheduleOnDayAndHour;
+
+								setPatients(patientsOnDate);
+							}}
+						/>
+					</Group>
+				</Paper>
+			</Center>
+			<Space h="md" />
+			<Center>
 				<Paper shadow="md" p="xl" style={{ width: "80%" }}>
-					<Table highlightOnHover>
+					<Table highlightOnHover fontSize="md">
 						<thead>
 							<tr>
 								<th>Nome do paciente</th>
