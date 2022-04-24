@@ -12,21 +12,23 @@ import "dayjs/locale/pt-br";
 
 const schema = Yup.object().shape({
 	name: Yup.string().required("Campo obrigatório"),
-	birthday: Yup.date().required("Campo obrigatório"),
+	birthday: Yup.string().required("Campo obrigatório"),
 	scheduleDay: Yup.string().required("Campo obrigatório"),
 	scheduleHour: Yup.string().required("Campo obrigatório"),
 });
 
 const Schedule = () => {
+	const lsBirthday = localStorage.getItem("Data de nascimento");
+	const lsScheduleDay = localStorage.getItem("Dia da vacina");
+	const lsScheduleHour = localStorage.getItem("Horário da vacina");
+
 	const form = useForm({
 		schema: yupResolver(schema),
 		initialValues: {
-			name: localStorage.getItem("Nome"),
-
-			// TO DO : está funcionando, mas não está visível
-			birthday: localStorage.getItem("Data de nascimento"),
-			scheduleDay: localStorage.getItem("Dia da vacina"),
-			scheduleHour: localStorage.getItem("Horário da vacina"),
+			name: localStorage.getItem("Nome") ?? "",
+			birthday: (lsBirthday && new Date(lsBirthday)) ?? "",
+			scheduleDay: (lsScheduleDay && new Date(lsScheduleDay)) ?? "",
+			scheduleHour: (lsScheduleHour && new Date(lsScheduleHour)) ?? "",
 		},
 	});
 
