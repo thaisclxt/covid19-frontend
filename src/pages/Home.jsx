@@ -17,19 +17,10 @@ const Home = () => {
 		<AppShell
 			padding="md"
 			header={
-				<Header
-					fixed={true}
-					height={70}
-					p="md"
-					style={{ backgroundColor: "#52040F" }}
-				>
-					<div
-						style={{ display: "flex", alignItems: "center", height: "100%" }}
-					>
-						<Text size="xl" color="white">
-							Vacinação Covid-19
-						</Text>
-					</div>
+				<Header fixed={true} height={70} p="md">
+					<Text size="xl" color="white">
+						Vacinação Covid-19
+					</Text>
 				</Header>
 			}
 		>
@@ -43,7 +34,7 @@ const Home = () => {
 						bottom: 0,
 					}}
 				>
-					<SimpleGrid cols={matches ? 3 : 1} style={{ alignItems: "center" }}>
+					<SimpleGrid cols={matches ? 3 : 1}>
 						<Button size="lg" component={Link} to="/schedule">
 							Agendar vacina
 						</Button>
