@@ -62,9 +62,9 @@ const Schedule = () => {
 							style: { backgroundColor: "#C4C4C4" },
 						});
 					} catch (error) {
-						let errorMessage = "";
+						let errorMessage = "Erro ao conectar com o servidor";
 
-						if (error.response.status === 422) {
+						if (error.response && error.response.status === 422) {
 							errorMessage =
 								error.response.data.message ===
 								"Limit of 2 patients per hour reached"
