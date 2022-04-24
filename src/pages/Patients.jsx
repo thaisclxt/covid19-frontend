@@ -55,7 +55,7 @@ const Patients = () => {
 							if (value != null) {
 								const patientsOnDay = await (
 									await api.get(
-										`/patients/${dayjs(value).format("YYYY-MM-DD")}`
+										`/patients/onDay/${dayjs(value).format("YYYY-MM-DD")}`
 									)
 								).data.scheduleOnDate;
 								console.log(patientsOnDay);
