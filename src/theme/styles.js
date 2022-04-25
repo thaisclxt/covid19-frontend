@@ -9,7 +9,6 @@ const styles = {
 			"&:hover": { backgroundColor: primaryColor },
 		},
 	},
-	Paper: { root: { width: "80%" } },
 	SegmentedControl: {
 		root: { backgroundColor: primaryColor },
 		label: { color: "white" },

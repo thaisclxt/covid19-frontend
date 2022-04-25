@@ -47,7 +47,7 @@ const Patients = () => {
 				Agendamentos
 			</Text>
 			<Center>
-				<Paper shadow="xs" p="xl">
+				<Paper shadow="xs" p="xl" style={{ width: "80%" }}>
 					<Group position="center" grow>
 						<DatePicker
 							icon={<Calendar size={16} color="#52040F" />}
@@ -96,7 +96,7 @@ const Patients = () => {
 			</Center>
 			<Space h="md" />
 			<Center>
-				<Paper shadow="md" p="xl">
+				<Paper shadow="md" p="xl" style={{ width: "80%" }}>
 					<Table highlightOnHover fontSize="md">
 						<thead>
 							<tr>
